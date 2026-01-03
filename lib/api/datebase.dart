@@ -77,7 +77,7 @@ class QuotData{
       {
         "id": 134,
         "category_id": "6",
-        "quote": "পরীক্ষা নয়, অধ্যয়নই তোমাকে শক্তিশালী করে।",
+        "quote": "পরীক্ষা নয়,অধ্যয়নই তোমাকে শক্তিশালী করে।",
         "author": "Benjamin Franklin",
         "created_at": null,
         "updated_at": null

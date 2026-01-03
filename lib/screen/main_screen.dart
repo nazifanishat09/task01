@@ -53,88 +53,92 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 SearchBer(),
                 //SizedBox(height:0),
-                Expanded(
-                  child: RefreshIndicator(
-                    color: Colors.teal,
-                    onRefresh: () async {
-                      qData = (await Api().ApiData())["data"];
-                      setState(() {});
-                    },
-                    child: ListView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                cardScreen(),
+              ],
+            ),
+    );
+  }
 
-                      itemCount: qData.length,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          // height: 100,
-                          // width: 400,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 1,
-                                offset: Offset(0, 2),
-                                spreadRadius: 1,
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image(
-                                      image: AssetImage("assets/inverted.png"),
-                                    ),
+  Expanded cardScreen() {
+    return Expanded(
+                child: RefreshIndicator(
+                  color: Colors.teal,
+                  onRefresh: () async {
+                    qData = (await Api().ApiData())["data"];
+                    setState(() {});
+                  },
+                  child: ListView.builder(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+
+                    itemCount: qData.length,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        // height: 100,
+                        // width: 400,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 1,
+                              offset: Offset(0, 2),
+                              spreadRadius: 1,
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image(
+                                    image: AssetImage("assets/inverted.png"),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 10),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "${qData[index]["quote"]}",
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${qData[index]["quote"]}",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "${qData[index]["author"]}",
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        color: Colors.grey,
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "${qData[index]["author"]}",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-    );
+              );
   }
 }
